@@ -4,25 +4,25 @@ by Michal Gorywoda, 20204787
 ### BUILD ###
 To build the project, execute the following command in the project directory:
 
-$ make all
+	$ make all
 
 If compiled successfully, "search" file should appear in the directory.
 
 To clean, execute this command:
 
-$ make clean
+	$ make clean
 
 
 ### RUNNING THE PROGRAM ###
 
 To run the program with sample text files provided in docs directory, type the following command in main directory:
 
-$ ./search docs/
+	$ ./search docs/
 
 In total, five text files should be opened. 
 Then you will be prompted for a word to search. For example, type:
 
-search Caesar
+	search Caesar
 
 The file names along with the lines in which the word has occured, will be displayed.
 
