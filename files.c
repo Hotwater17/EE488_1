@@ -17,12 +17,12 @@ int Files_Search_TXT(char files[FILES_MAX][FILE_NAME_SIZE], char * dir)
  while((dirEntry = readdir(dirStruct)) != NULL)
  {
   printf("%s \n", dirEntry->d_name);
-  Flush(currentExt, sizeof(currentExt));
-  Files_Search_Extention(currentExt, dirEntry->d_name);
-  printf("Current extention: %s \n", currentExt);
-  if(strcmp(currentExt, ".txt") == 0)
+  String_Flush(currentExt, sizeof(currentExt));
+  Files_Search_Extension(currentExt, dirEntry->d_name);
+  printf("Current extension: %s \n", currentExt);
+  if(String_Compare(currentExt, ".txt") == 0)
   {
-    strncpy(files[fileNumber], dirEntry->d_name, 20);
+    String_Copy(files[fileNumber], dirEntry->d_name, 20);
     fileNumber++;
   }
 
@@ -40,7 +40,7 @@ int Files_Search_TXT(char files[FILES_MAX][FILE_NAME_SIZE], char * dir)
 
 }
 
-void Files_Search_Extention(char * extention, char * fileName)
+void Files_Search_Extension(char * extension, char * fileName)
 {
  while(*fileName != '.')
  {
@@ -48,9 +48,9 @@ void Files_Search_Extention(char * extention, char * fileName)
  }
  while(*fileName)
  {
-  *extention = *fileName;
+  *extension = *fileName;
   fileName++;
-  extention++;
+  extension++;
  }
 
 }

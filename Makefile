@@ -1,5 +1,8 @@
+CC=gcc
+CCFLAGS= -I.
+
 all: main.c record.c searcher.c files.c mystrings.c
-	gcc -o search main.c record.c searcher.c files.c mystrings.c -I.
+	$(CC) $(CCFLAGS) -o search main.c record.c searcher.c files.c mystrings.c -I.
 
 clobber:
 	rm -f *~ \#*\# core

@@ -5,8 +5,8 @@
 #ifndef RECORD_H
 #define RECORD_H
 
-#define RECORD_SIZE 5000
-#define CELL_SIZE 30
+#define RECORD_SIZE 3000
+#define CELL_SIZE 200
 
 
 typedef struct
@@ -21,7 +21,7 @@ typedef struct
 
 
 void Record_Display_All(record_t *record);
-void Record_Display_Single(record_t *record, char files[FILES_MAX][CELL_SIZE], int index);
+void Record_Display_Single(record_t *record, char files[FILES_MAX][FILE_NAME_SIZE], int index);
 void Record_Scan_File(char * fileName, char * path, record_t *record, int doc);
 void Record_Add_New(record_t *record, char * word, int line, int doc);
 void Record_Update_Existing(record_t *record, int matchIndex, int line, int doc);

@@ -13,7 +13,7 @@ void Record_Display_All(record_t *record)
   printf("%s occured %d times ", record->wordRecord[cnt], record->frequencyRecord[cnt]);
   for(subCnt = 0; subCnt < record->frequencyRecord[cnt]; subCnt++)
   {
-   printf("(L:%d, D:%d)", record->lineRecord[cnt][subCnt]+1, record->docRecord[cnt][subCnt]);
+   printf("(L:%d, D:%d, I:%d)", record->lineRecord[cnt][subCnt]+1, record->docRecord[cnt][subCnt], cnt);
   }
   printf("\n");
  }
@@ -21,7 +21,7 @@ void Record_Display_All(record_t *record)
 
 
 
-void Record_Display_Single(record_t *record, char files[FILES_MAX][CELL_SIZE], int index)
+void Record_Display_Single(record_t *record, char files[FILES_MAX][FILE_NAME_SIZE], int index)
 {
  char lineStr[128];
  char docStr[128];
@@ -45,9 +45,12 @@ int matchIndex = 0;
 
 char targetPathName[50];
 
-strncpy(targetPathName, path, sizeof(path));
+String_Copy(targetPathName, path, /*sizeof(path)*/ String_Get_Length(path));
+printf("%s %d \n", targetPathName, String_Get_Length(targetPathName));
+printf("%s %d \n", fileName, String_Get_Length(fileName));
+//String_Merge(targetPathName, fileName);
 strcat(targetPathName, fileName);
-
+printf("%s", targetPathName);
 FILE *targetFile = fopen(targetPathName, "r");
 if(targetFile == NULL)
 {
@@ -89,7 +92,7 @@ fclose(targetFile);
 void Record_Add_New(record_t *record, char * word, int line, int doc)
 {
  record->frequencyRecord[record->index] = 1;
- strncpy(record->wordRecord[record->index], word, CELL_SIZE);
+ String_Copy(record->wordRecord[record->index], word, CELL_SIZE);
  record->lineRecord[record->index][record->frequencyRecord[record->index]-1] = line;
  record->docRecord[record->index][record->frequencyRecord[record->index]-1] = doc;
  record->index++;
@@ -111,7 +114,7 @@ int Record_Search(record_t *record, char * word, int *matchIndex)
  int cnt = 0;
  for(cnt = 0; cnt < record->index; cnt++)
  {
-  if(strcmp(word, record->wordRecord[cnt]) == 0)
+  if(String_Compare(word, record->wordRecord[cnt]) == 0)
   {
    *matchIndex = cnt;
    return 1;

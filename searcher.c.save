@@ -5,30 +5,28 @@
 int Searcher_Get_Word(char * word)
 {
  char keyword[] = "search";
- char delim[] = " ,-.\n\r";
+ char delim[] = " ,-.";
  char *tmpStr;
  char tmpWord[128];
- char tmpKeyword[128];
- printf("Searcher> ");
+ char tmpKeyword[20];
 
- scanf("%s %[^\n]s", tmpKeyword, tmpWord);
- //scanf("%s", tmpWord);
- if(String_Compare(keyword, tmpKeyword)==0)
+ printf("Searcher> ");
+ //scanf("%s", tmpKeyword);
+ 
+scanf("%s", tmpWord);
+ 
+ if(String_Compare(keyword, tmpKeyword) == 0)
  {
-  String_Copy(word, tmpWord, String_Get_Length(tmpStr));
+  printf("Searching for word %s \n", tmpWord);
+  String_Copy(word, tmpWord, String_Get_Length(tmpWord));
   return 0;
  }
  else
  {
-  printf("Unknown command! \n");
+  printf("Unknown command!\n ");
   return 1;
  }
-
 /*
- fgets(tmpWord, 50, stdin);
-
-
-
  printf("word %s \n", tmpWord);
  tmpStr = strtok(tmpWord, delim);
 
@@ -38,7 +36,7 @@ int Searcher_Get_Word(char * word)
    printf("word %s \n", tmpWord);
    tmpStr = strtok(NULL, delim);
    printf("Searching word %s \n", tmpStr);
-   String_Copy(word, tmpStr, String_Get_Length(tmpStr));
+   //String_Copy(word, tmpStr, CELL_SIZE);
    return 0;
   }
 
@@ -48,7 +46,4 @@ int Searcher_Get_Word(char * word)
    return 1;
   }
 */
-
-//scanf("%s", word);
-//return 0;
 }
