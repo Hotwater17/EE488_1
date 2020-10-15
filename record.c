@@ -9,7 +9,6 @@ void Record_Display_All(record_t *record)
  char docStr[128];
  for(cnt = 0; cnt < record->index; cnt++)
  {
-  //printf("%s in lines %s in docs %s \n", record->wordRecord[cnt],
   printf("%s occured %d times ", record->wordRecord[cnt], record->frequencyRecord[cnt]);
   for(subCnt = 0; subCnt < record->frequencyRecord[cnt]; subCnt++)
   {
@@ -26,7 +25,7 @@ void Record_Display_Single(record_t *record, char files[FILES_MAX][FILE_NAME_SIZ
  char lineStr[128];
  char docStr[128];
  int subCnt = 0;
- printf("Word %s found under index %d, occured %d times \n", record->wordRecord[index], index, record->frequencyRecord[index]);
+ //printf("Word %s found under index %d, occured %d times \n", record->wordRecord[index], index, record->frequencyRecord[index]);
  for(subCnt = 0; subCnt < record->frequencyRecord[index]; subCnt++)
  {
   printf("%s: line #%d \n", files[record->docRecord[index][subCnt]], record->lineRecord[index][subCnt]+1);
@@ -43,14 +42,11 @@ int wordCnt = 0;
 int lineCnt = 0;
 int matchIndex = 0;
 
+char tword[50];
 char targetPathName[50];
 
-String_Copy(targetPathName, path, /*sizeof(path)*/ String_Get_Length(path));
-printf("%s %d \n", targetPathName, String_Get_Length(targetPathName));
-printf("%s %d \n", fileName, String_Get_Length(fileName));
-//String_Merge(targetPathName, fileName);
-strcat(targetPathName, fileName);
-printf("%s", targetPathName);
+String_Copy(targetPathName, path, String_Get_Length(path));
+String_Merge(targetPathName, fileName);
 FILE *targetFile = fopen(targetPathName, "r");
 if(targetFile == NULL)
 {
@@ -81,7 +77,7 @@ while(fgets(tmpLine, 128, targetFile) != NULL)
 
 
 
-printf("End of file %s \n", targetPathName);
+//printf("End of file %s \n", targetPathName);
 
 fclose(targetFile);
 
