@@ -16,10 +16,10 @@ int Files_Search_TXT(char files[FILES_MAX][FILE_NAME_SIZE], char * dir)
 
  while((dirEntry = readdir(dirStruct)) != NULL)
  {
-  printf("%s \n", dirEntry->d_name);
+  //printf("%s \n", dirEntry->d_name);
   String_Flush(currentExt, sizeof(currentExt));
   Files_Search_Extension(currentExt, dirEntry->d_name);
-  printf("Current extension: %s \n", currentExt);
+  //printf("Current extension: %s \n", currentExt);
   if(String_Compare(currentExt, ".txt") == 0)
   {
     String_Copy(files[fileNumber], dirEntry->d_name, 20);
@@ -28,14 +28,14 @@ int Files_Search_TXT(char files[FILES_MAX][FILE_NAME_SIZE], char * dir)
 
  }
 
-
+/*
  printf("Number of .txt files %d \n", fileNumber);
 
  for(int cnt = 0; cnt < fileNumber; cnt++)
  {
   printf("%s \n", files[cnt]);
  }
-
+*/
  return fileNumber;
 
 }

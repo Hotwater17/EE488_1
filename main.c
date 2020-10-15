@@ -14,11 +14,15 @@ int wordMatchIndex;
 record_t mainRecord;
 mainRecord.index = 0;
 
-printf("Path: %s \n", argv[1]);
+if(argv[1] == NULL)
+{
+ printf("No directory argument \n");
+ exit(1);
+}
 String_Copy(path, argv[1], String_Get_Length(argv[1]));
 
-textFileNumber = Files_Search_TXT(textFiles, path);
 
+textFileNumber = Files_Search_TXT(textFiles, path);
 for(int cnt = 0; cnt < textFileNumber; cnt++)
 {
  printf("Opened file: %s \n", textFiles[cnt]);
