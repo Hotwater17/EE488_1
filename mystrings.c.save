@@ -1,0 +1,81 @@
+#include "mystrings.h"
+
+void String_Flush(char * array, int size)
+{
+ for(int cnt = 0; cnt < size; cnt++)
+ {
+  array[cnt] = '\0';
+
+ }
+}
+
+void String_Copy(char *dst, char *src, int length)
+{
+ int cnt = 0;
+ for(cnt = 0; cnt < length; cnt++)
+ {
+  dst[cnt] = src[cnt];
+ }
+}
+
+
+void String_Merge(char *dst, char *src)
+{
+ String_Copy(dst+String_Get_Length(dst), src, String_Get_Length(dst));
+}
+
+int String_Compare(char *str1, char *str2)
+{
+ int cnt = 0;
+ while(str1[cnt] != '\0')
+ {
+  if(str1[cnt] != str2[cnt]) return 1;
+  cnt++;
+ }
+ if(str2[cnt] != '\0') return 1;
+ else return 0;
+}
+
+int String_Get_Length(char *str)
+{
+ int cnt = 0;
+ do
+ {
+  cnt++;
+ }while(str[cnt] != '\0');
+ return cnt;
+}
+
+int String_Find_Character(char *array, char key)
+{
+ int cnt = 0;
+ while(array[cnt] != '\0')
+ {
+  if(array[cnt] == key)
+  {
+   return cnt;
+  }
+ }
+}
+
+char * String_Tokenize(char *src, char *dst, char *delimiter)
+{
+ int cnt = 0;
+ int subCnt = 0;
+ char *startPtr;
+ startPtr = src;
+ while(*src != '\0')
+ {
+  for(subCnt = 0; subCnt < String_Get_Length(delimiter); subCnt++)
+  {
+   if(*src == delimiter[subCnt])
+   {
+    *src = '\0';
+    printf("%s \n", startPtr);
+    return src+1;
+   }
+  }
+  src++;
+ }
+return NULL;
+}
